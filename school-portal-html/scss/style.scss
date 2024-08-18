@@ -1,0 +1,362 @@
+// scss/style.scss
+@import "utlilities";
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Inter", sans-serif;
+}
+
+html {
+	scroll-behavior: smooth;
+	scroll-padding: 5rem;
+}
+
+input,
+.input-group-text,
+select {
+	padding: 8px 12px !important;
+	border: 1px solid #d0d5dd;
+	border-radius: 8px;
+}
+
+input,
+.input-group-text,
+select:focus,
+.form-control:focus {
+	outline: none !important;
+    border: 1px solid #d0d5dd !important;
+	box-shadow: unset !important;
+}
+
+::placeholder {
+	color: #3d5263;
+}
+
+.form-check-input[type="radio"] {
+	padding: unset !important;
+	border-radius: 50% !important;
+}
+
+$primary: #101828;
+$deep-primary: #0c121d;
+
+body {
+	color: $primary;
+}
+.btn {
+	border-radius: 8px;
+	text-transform: capitalize !important;
+	padding: 8px 15px !important;
+	cursor: pointer;
+	&.btn-primary {
+		background-color: $primary;
+		border-color: $primary;
+		color: white;
+		&:hover,
+		&:active,
+		&:focus {
+			border-color: $deep-primary !important;
+			background-color: $deep-primary !important;
+			text-decoration: none !important;
+			box-shadow: none;
+			outline: none;
+		}
+	}
+
+	&.disabled {
+		color: #d2d6d9 !important;
+		background-color: #f8f9fb !important;
+		border: 1px solid #f8f9fb !important;
+		opacity: 1;
+
+		&.hover {
+			background-color: $primary;
+			border-color: $primary;
+			color: white !important;
+		}
+	}
+}
+
+.bg-primary {
+    background-color: #101828 !important;
+}
+
+.text-success {
+	color: #00b27c;
+}
+
+.subtext {
+	color: #667085;
+}
+
+.text-blue {
+	color: #0055b2;
+}
+
+.text-deepprimary {
+	color: $deep-primary;
+}
+
+.text-primary {
+    color: $primary !important;
+}
+
+.fs-60 {
+    font-size: 60px;
+}
+
+.text-deepwarning {
+	color: #b76b00;
+}
+
+.text-yellow-500 {
+	color: #ffaa33;
+}
+
+.border-grey {
+	border-color: #98A2B3 !important;
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5); // semi-transparent overlay
+	display: flex;
+	align-items: flex-end; // align the text at the bottom
+	justify-content: center; // center the text horizontally
+	color: white;
+}
+
+.overlay-text {
+	background: rgba(0, 0, 0, 0.5); // semi-transparent overlay
+	width: 100%;
+	padding: 20px;
+}
+
+.sidenav {
+	width: 260px;
+	background-color: #0c111d;
+	height: 100vh;
+	position: fixed;
+	left: -260px;
+	z-index: 1000;
+	overflow: hidden;
+	padding-top: 20px;
+	transition: 0.3s ease-in-out;
+}
+
+@media (min-width: 992px) {
+	.sidenav {
+		display: block;
+		left: 0;
+	}
+}
+
+.sidenav-header {
+	padding: 10px 16px;
+	color: white;
+	text-align: center;
+}
+
+.sidenav-links {
+	list-style: none;
+	padding: 10px 15px 0;
+	margin: 0;
+}
+
+.sidenav-links li {
+	padding: 13px 16px;
+	border-radius: 8px;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+    transition: .2s;
+}
+
+.sidenav-links li a {
+	color: #667085;
+	text-decoration: none;
+	display: block;
+	border-radius: 10px;
+    font-weight: 600;
+}
+
+.sidenav-links li:hover {
+	color: white;
+	background-color: #182230;
+}
+
+.sidenav-links li:is(:link, :active, :visited).active {
+	color: white;
+	background-color: #182230;
+}
+
+.sidenav.active {
+	left: 0;
+}
+
+.wrapper {
+	min-height: 95vh;
+
+	@media (min-width: 992px) {
+		padding-left: 260px;
+	}
+}
+
+.topnav {
+	background-color: #fff;
+	padding: 15px;
+	box-shadow: 3px 3px 5px #00000039;
+	border-bottom: 1px solid #e4e7ec;
+
+	display: flex;
+    justify-content: space-between;
+	align-items: center;
+}
+
+.fas {
+	color: black;
+}
+
+.menu-icon {
+    cursor: pointer;
+	@media (min-width: 992px) {
+		display: none;
+	}
+}
+
+.maincontent {
+	background-color: #fff;
+	width: 100%;
+	height: 0vh;
+	min-height: calc(100vh - 72px);
+	overflow-x: scroll;
+	scrollbar-width: none;
+
+	// padding: 15px;
+	// @media (min-width: 992px) {
+	//   padding: 30px;
+	// }
+}
+
+.content {
+	margin-top: 20px;
+}
+
+.badge {
+    border-radius: 25px;
+    padding: 6px 8px;
+    font-size: 12px;
+
+    @mixin statusColor($bgColor, $textColor, $borderColor) {
+      background-color: $bgColor;
+      color: $textColor;
+      border: 1px solid $borderColor;
+    }
+
+    &.active {
+      @include statusColor(#ECFDF3,#067647, #ABEFC6);
+      .badge {
+		display: inline-block;
+        background:#067647;
+      }
+
+      .fas,.far {
+        font-size: 12px;
+        color: #067647;
+      }
+    }
+
+    &.pending {
+      @include statusColor(#fff5ec, #cc7700, #f7961c);
+      .badge {
+		display: inline-block;
+        background: #cc7700;
+      }
+
+      .fas,.far {
+        font-size: 12px;
+        color: #cc7700;
+      }
+    }
+
+    &.danger {
+      @include statusColor(#fef1f2, #b22922, #ed1b2e);
+      .badge {
+		display: inline-block;
+        background: #b22922;
+      }
+      .fas,.far {
+        font-size: 12px;
+        color: #b22922;
+      }
+    }
+
+    &.disabled {
+      @include statusColor(#f2f2f2, #5a6064, #e6eaed);
+      .badge {
+		display: inline-block;
+        background: #5a6064;
+      }
+      .fas,.far {
+        font-size: 12px;
+        color: #5a6064;
+      }
+    }
+
+    &.closed {
+      @include statusColor(#f0faff, #0062cc, #0062cc);
+      .badge {
+		display: inline-block;
+        background: #0062cc;
+      }
+
+      .fas,.far {
+        font-size: 12px;
+        color: #0062cc;
+      }
+    }
+    &.white {
+      @include statusColor(#fff, #667085, #fff);
+      .badge {
+		display: inline-block;
+        background: #667085;
+      }
+
+      .fas,.far {
+        font-size: 12px;
+        color: #667085;
+      }
+    }
+  }
+
+
+  .border-lg-end {
+    border-right: 1px solid #e6ecf0;
+}
+
+@media (max-width: 991px) {
+    .border-lg-end {
+        border-right: none;
+    }
+
+    .border-sm-bottom {
+        border-bottom: 1px solid #e6ecf0;
+    }
+}
+
+.scrollable-row {
+	overflow-x: auto;
+	white-space: nowrap;
+}
+
+
+.fw-400  {
+	font-weight: 400;
+}

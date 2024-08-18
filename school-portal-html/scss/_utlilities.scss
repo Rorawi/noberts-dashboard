@@ -1,0 +1,135 @@
+$objectConfig: 0, contain, cover, fill, scale-down;
+
+@each $tuple in $objectConfig {
+  .object-fit-#{($tuple)} {
+    object-fit: $tuple;
+  }
+}
+
+@for $i from 1 through 300 {
+  .vh-height-#{$i} {
+    height: calc(100vh - #{$i}px);
+  }
+}
+
+@mixin dynamic-height($subtraction-value) {
+  height: calc(100vh - #{$subtraction-value}px);
+  @supports (height: 100svh) {
+    height: calc(100svh - #{$subtraction-value}px);
+  }
+}
+
+@for $i from 0 through 500 {
+  .svh-#{$i} {
+    @include dynamic-height($i);
+  }
+}
+
+.svh-100 {
+  height: 100svh!important;
+}
+
+@for $i from 1 through 2000 {
+  .max-width-#{$i} {
+    max-width: #{$i}px;
+  }
+
+  .min-width-#{$i} {
+    min-width: #{$i}px;
+  }
+
+  .max-height-#{$i} {
+    max-height: #{$i}vh;
+  }
+
+  .min-height-#{$i} {
+    min-height: #{$i}vh;
+  }
+
+  .width-#{$i} {
+    width: #{$i}px;
+  }
+
+  .height-#{$i} {
+    height: #{$i}px;
+  }
+
+
+  .top-#{$i} {
+    top: #{$i}px;
+  }
+
+  .right-#{$i} {
+    right: #{$i}px;
+  }
+
+  .left-#{$i} {
+    left: #{$i}px;
+  }
+
+  .bottom-#{$i} {
+    bottom: #{$i}px;
+  }
+
+  .border-radius-#{$i} {
+    border-radius: #{$i}px !important; 
+  }
+  
+  .z-index-#{$i} {
+    z-index: #{$i};
+  }
+}
+
+@for $i from 8 through 100 {
+.fs-#{$i} {
+    font-size: #{$i}px !important; 
+  }
+}
+
+
+.fw-bold {
+  font-weight: 700;
+}
+.fw-500 {
+  font-weight: 500;
+}
+.fw-600 {
+  font-weight: 600;
+}
+
+.fw-normal {
+  font-weight: 400 !important;
+}
+
+.text-primary {
+  color: #010508 !important;
+}
+
+
+
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
+
+
+@each $breakpoint, $value in $breakpoints {
+  @media (min-width: #{$value}) {
+    .text-#{$breakpoint}-left {
+      text-align: left !important;
+    }
+    .text-#{$breakpoint}-center {
+      text-align: center !important;
+    }
+    .text-#{$breakpoint}-right {
+      text-align: right !important;
+    }
+  }
+}
+
+.pointer {
+  cursor: pointer;
+}
